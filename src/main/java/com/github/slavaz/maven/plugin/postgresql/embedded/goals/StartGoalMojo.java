@@ -49,6 +49,12 @@ public class StartGoalMojo extends AbstractGoalMojo {
     @Parameter(property = "pgHost", defaultValue = "localhost")
     private String pgHost;
 
+    @Parameter(property = "restoreFile")
+    private String restoreFile;
+
+    @Parameter(property = "importFile")
+    private String importFile;
+
     @Parameter(defaultValue = "5432", property = "pgPort", required = true)
     private int pgServerPort;
 
@@ -79,6 +85,6 @@ public class StartGoalMojo extends AbstractGoalMojo {
 
     private IPgInstanceProcessData buildInstanceProcessData() {
         return new PgInstanceProcessData(pgServerVersion, pgHost, pgServerPort,
-                dbName, userName, password, pgDatabaseDir, pgLocale, pgCharset);
+                dbName, userName, password, pgDatabaseDir, pgLocale, pgCharset, restoreFile, importFile);
     }
 }

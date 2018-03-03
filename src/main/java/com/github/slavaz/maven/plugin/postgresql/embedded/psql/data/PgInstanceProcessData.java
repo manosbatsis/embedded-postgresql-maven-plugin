@@ -24,7 +24,11 @@ public class PgInstanceProcessData implements IPgInstanceProcessData {
 
     private String pgCharset;
 
-    public PgInstanceProcessData(String pgServerVersion, String pgHost, int pgPort, String dbName, String userName, String password, String pgDatabaseDir, String pgLocale, String pgCharset) {
+    private String restoreFile;
+
+    private String importFile;
+
+    public PgInstanceProcessData(String pgServerVersion, String pgHost, int pgPort, String dbName, String userName, String password, String pgDatabaseDir, String pgLocale, String pgCharset, String restoreFile, String importFile) {
         this.pgServerVersion = pgServerVersion;
         this.pgHost = pgHost;
         this.pgPort = pgPort;
@@ -34,6 +38,8 @@ public class PgInstanceProcessData implements IPgInstanceProcessData {
         this.pgDatabaseDir = pgDatabaseDir;
         this.pgLocale = pgLocale;
         this.pgCharset = pgCharset;
+        this.restoreFile = restoreFile;
+        this.importFile = importFile;
     }
 
     public PgInstanceProcessData() {
@@ -109,5 +115,25 @@ public class PgInstanceProcessData implements IPgInstanceProcessData {
 
     public void setPgCharset(String pgCharset) {
         this.pgCharset = pgCharset;
+    }
+
+    @Override
+    public String getRestoreFile() {
+        return restoreFile;
+    }
+
+    @Override
+    public void setRestoreFile(String restoreFile) {
+        this.restoreFile = restoreFile;
+    }
+
+    @Override
+    public String getImportFile() {
+        return importFile;
+    }
+
+    @Override
+    public void setImportFile(String importFile) {
+        this.importFile = importFile;
     }
 }

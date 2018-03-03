@@ -39,15 +39,15 @@ public class PostgresConfigUtilTest {
         return new Object[][]{
                 new Object[]{new Object[]{
                         "latest", "hostname", 123456, "db", "user", "pass",
-                        "locale", "charset"
+                        "locale", "charset", null, null
                 }},
                 new Object[]{new Object[]{
                         "latest", null, 123456, "db", "user", "pass",
-                        "locale", "charset"
+                        "locale", "charset", null, null
                 }},
                 new Object[]{new Object[]{
                         null, null, 0, null, null, null,
-                        null, null
+                        null, null, null, null
                 }},
         };
     }
@@ -70,7 +70,8 @@ public class PostgresConfigUtilTest {
     private void given_aPgInstanceProcessData() {
         pgInstanceProcessData = new PgInstanceProcessData(pgParameters.getPgVersion(), pgParameters.getPgHost(),
                 pgParameters.getPgPort(), pgParameters.getDbName(), pgParameters.getUserName(), pgParameters
-                .getPassword(), tempDir.toString(), pgParameters.getLocale(), pgParameters.getCharset());
+                .getPassword(), tempDir.toString(), pgParameters.getLocale(), pgParameters.getCharset(),
+                pgParameters.getRestoreFile(), pgParameters.getImportFile());
     }
 
     private void then_configShouldBeFilled() {
@@ -119,6 +120,8 @@ public class PostgresConfigUtilTest {
         private final String password;
         private final String locale;
         private final String charset;
+        private final String restoreFile;
+        private final String importFile;
 
         PgParameters(Object[] parameters) {
             pgVersion = (String) parameters[0];
@@ -129,6 +132,8 @@ public class PostgresConfigUtilTest {
             password = (String) parameters[5];
             locale = (String) parameters[6];
             charset = (String) parameters[7];
+            restoreFile = (String) parameters[8];
+            importFile = (String) parameters[9];
         }
 
         String getPgVersion() {
@@ -161,6 +166,14 @@ public class PostgresConfigUtilTest {
 
         String getCharset() {
             return charset;
+        }
+
+        String getRestoreFile() {
+            return restoreFile;
+        }
+
+        String getImportFile() {
+            return importFile;
         }
     }
 }
